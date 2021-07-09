@@ -241,8 +241,3 @@ class TestFollow(TestCase):
     def setUp(self):
         self.authorized_user = Client()
         self.authorized_user.force_login(self.follow_user)
-
-    # def new_post_follow(self):
-    #     response = self.authorized_client.get(reverse('follow_index'))
-    #     obj = response.context['page'][0]
-    #     self.assertEqual(obj, PostViewsTests.post)

@@ -7,5 +7,5 @@ def year(request):
     """
     year1 = dt.datetime.now().year
     return {
-        "year": year1
+        'year': year1
     }

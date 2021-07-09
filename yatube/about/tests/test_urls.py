@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django.test import Client, TestCase
 
 
@@ -15,4 +17,4 @@ class AboutViewsTests(TestCase):
         for page in pages:
             with self.subTest(page=page):
                 response = AboutViewsTests.client.get(page)
-                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.status_code, HTTPStatus.OK)

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
@@ -16,22 +17,22 @@ def make_pagination(request, object_list, per_page):
 @cache_page(20)
 def index(request):
     post_list = Post.objects.all()
-    page = make_pagination(request, post_list, 10)
+    page = make_pagination(request, post_list, settings.PAGINATOR_PAGES)
     return render(request, 'index.html', {'page': page})
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     post_list = group.posts.all()
-    page = make_pagination(request, post_list, 10)
+    page = make_pagination(request, post_list, settings.PAGINATOR_PAGES)
     return render(request, 'group.html', {'page': page, 'group': group})
 
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
     user = request.user
-    post_list = Post.objects.filter(author=author).all()
-    page = make_pagination(request, post_list, 10)
+    post_list = Post.objects.filter(author=author)
+    page = make_pagination(request, post_list, settings.PAGINATOR_PAGES)
     following = user.is_authenticated and (
         Follow.objects.filter(user=user, author=author).exists())
     context = {
@@ -85,7 +86,6 @@ def add_comment(request, username, post_id):
     post = get_object_or_404(Post, author__username=username, id=post_id)
     comments = post.comments.all()
     form = CommentForm(request.POST or None)
-    print('qwertyui')
     if form.is_valid():
         comment = form.save(commit=False)
         comment.post = post
@@ -103,7 +103,7 @@ def add_comment(request, username, post_id):
 @login_required
 def follow_index(request):
     post_list = Post.objects.filter(author__following__user=request.user)
-    page = make_pagination(request, post_list, 10)
+    page = make_pagination(request, post_list, settings.PAGINATOR_PAGES)
     return render(request, 'follow.html', {'page': page})
 
 
@@ -129,11 +129,11 @@ def profile_unfollow(request, username):
 def page_not_found(request, exception):
     return render(
         request,
-        "misc/404.html",
-        {"path": request.path},
+        'misc/404.html',
+        {'path': request.path},
         status=404
     )
 
 
 def server_error(request):
-    return render(request, "misc/500.html", status=500)
+    return render(request, 'misc/500.html', status=500)
