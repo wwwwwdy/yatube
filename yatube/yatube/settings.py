@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0z9*=%h3i$rqwo(d5&j*2iwq5kl0m9()3dkhe0yl0vf__lzk&6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
+    'agrebenyukov.pythonanywhere.com',
+    'www.agrebenyukov.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
     '[::1]',
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'posts',
     'about',
     'sorl.thumbnail',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'yatube.urls'
@@ -138,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = 'index'
-# LOGOUT_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 #  подключаем движок filebased.EmailBackend
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
@@ -152,3 +156,6 @@ CACHES = {
 }
 
 PAGINATOR_PAGES = 10
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

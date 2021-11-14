@@ -26,7 +26,9 @@ class Post(models.Model):
                               null=True,
                               related_name='posts', verbose_name='Группа',
                               help_text='Выберите группу')
-    image = models.ImageField(upload_to='posts/', blank=True, null=True)
+    image = models.ImageField(upload_to='posts/', blank=True, null=True,
+                              verbose_name='Изображение',
+                              help_text='Добавьте картинку')
 
     def __str__(self):
         return self.text[:15]
