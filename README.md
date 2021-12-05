@@ -1,3 +1,53 @@
-# hw05_final
+# Социальная сеть Yatube
+### Yatube - Проект Yatube позволяет вести блог, смотреть ленту авторов, а также подписываться на интересных вам авторов.
+***
+### Описание проекта:
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+Yatube - Проект Yatube позволяет вести блог, смотреть ленту авторов, а также подписываться на интересных вам авторов.
+
+Права для не авторизованных пользователей ограничены, для получения возможности создания и комментирования постов, подписки на авторов, вам необходимо зарегистрироваться.
+
+***
+### Как запустить проект:
+
+Клонировать репозиторий и перейти в него в командной строке:
+
+```bash
+https://github.com/wwwwwdy/hw05_final.git
+```
+
+```bash
+cd hw05_final
+```
+
+Cоздать и активировать виртуальное окружение:
+
+```bash
+python -m venv env
+```
+
+```bash
+source env/bin/activate
+```
+
+```bash
+python -m pip install --upgrade pip
+```
+
+Установить зависимости из файла requirements.txt:
+
+```bash
+pip install -r requirements.txt
+```
+
+Выполнить миграции:
+
+```bash
+python manage.py migrate
+```
+
+Запустить проект:
+
+```bash
+python manage.py runserver
+```
