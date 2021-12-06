@@ -109,7 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+env
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -155,3 +155,5 @@ htmlcov/
 .coverage.*
 coverage.xml
 *.cover 
+static/
+media/
